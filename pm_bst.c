@@ -33,3 +33,58 @@ bstNode* FindMax(bstNode *node)
   else
     return node;
 }
+
+/* to insert new name into bst */
+bstNode* InsertName(bstNode *node, char *name)
+{
+  if(node == NULL)
+    {
+      bstNode *tmp;
+      tmp = (bstNode *)malloc(sizeof(bstNode));
+      tmp -> name = strdup(name);
+      tmp -> left = tmp -> right = NULL;
+      return tmp;
+    }
+  else if(strcmp(node -> name, name) > 0)
+    {
+      node -> right = InsertName(node -> right, name);
+    }
+  else if(strcmp(node -> name, name) < 0)
+    {
+      node -> left = InsertName(node -> left, name);
+    }
+  return node;
+}
+
+/* to delete name from bst */
+bstNode* DeleteName(bstNode *node, char *name)
+{
+  bstNode *tmp;
+  if(node == NULL)
+    {
+      printf("Name not found in System. Please try again.\n");
+    }
+  else if(strcmp(node -> name, name) < 0)
+    {
+      node -> left = DeleteName(node -> left, name);
+    }
+  else
+    {
+      if(node -> right && node -> left)
+	{
+	  tmp = FindMin(node -> right);
+	  node -> name = tmp -> name;
+	  node -> right = DeleteName(node -> right, tmp -> name);
+	}
+      else
+	{
+	  tmp = node;
+	  if(node -> left == NULL)
+	    node = node -> right;
+	  else if(node -> right == NULL)
+	    node = node -> left;
+	  free(tmp);
+	}
+    }
+  return node;
+}
