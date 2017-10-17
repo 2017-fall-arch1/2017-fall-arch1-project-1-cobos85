@@ -152,3 +152,61 @@ void menu()
   printf("Enter '3' to view all names in the system.\n");
   printf("Enter '0' to quit.\n");
 }
+
+/* main method for use of bst, user input and read/write to file */
+int main()
+{
+  bstNode* root = NULL;
+  int option;
+  char nm[200];
+  char in[200];
+  FILE *f;
+  f = fopen("employees.txt","r");
+  if(f == NULL)
+    {
+      printf("Couldn't open file. :(\n");
+      exit(1);
+    }
+  while(fgets(nm, 200, f) != NULL)
+    {
+      //printf("%s", nm);
+      root = InsertName(root, nm);
+    }
+  fclose(f);
+
+  printf("Welcome to Personnel Management System!\n");
+  menu();
+  while(option != 0)
+    {
+      if(option == 1)
+	{
+	  printf("Please enter name to add to system or enter another option.\n");
+	  //scanf("%[^\n]s", in);
+	  fgets(in, 200, stdin);
+	  InsertName(root, in);
+	  //%*c;
+	}
+      else if(option == 2)
+	{
+	  printf("Please enter name to delete from the system or enter another option.\n");
+	  //scanf("%[^\n]s", in);
+	  fgets(in, 200, stdin);
+	  DeleteName(root,in);
+	}
+      else if(option == 3)
+	{
+	  printf("Printing names in system:\n");
+	  PrintInorder(root);
+	  printf("Names printed. Please enter an option.\n");
+	}
+      else
+	{
+	  printf("Please choose an option.\n");
+	}
+      scanf("%d", &option);
+    }
+  fi = fopen("employees.txt", "w");
+  PrintPreorder(root);
+  fclose(fi);
+  return 0;
+}
