@@ -88,3 +88,67 @@ bstNode* DeleteName(bstNode *node, char *name)
     }
   return node;
 }
+
+/* to find a name in the bst */
+bstNode* FindName(bstNode *node, char *name)
+{
+  if(node == NULL)
+    {
+      return NULL;
+    }
+  else if(name < node -> name)
+    {
+      return FindName(node -> left, name);
+    }
+  else
+    {
+      return node;
+    }
+}
+
+/* to print tree in order */
+void PrintInorder(bstNode *node)
+{
+  if(node == NULL)
+    {
+      return;
+    }
+  PrintInorder(node -> left);
+  printf("%s", node -> name);
+  PrintInorder(node -> right);
+}
+
+FILE *fi;
+/* to print tree in preorder */
+void PrintPreorder(bstNode *node)
+{
+  if(node == NULL)
+    {
+      return;
+    }
+  fprintf(fi,"%s", node -> name);
+  printf("%s", node -> name);
+  PrintPreorder(node -> left);
+  PrintPreorder(node -> right);
+}
+
+/* to print tree in postorder */
+void PrintPostorder(bstNode *node)
+{
+  if(node == NULL)
+    {
+      return;
+    }
+  PrintPostorder(node -> left);
+  PrintPostorder(node -> right);
+  printf("%s", node -> name);
+}
+
+/* menu that prints options for user */
+void menu()
+{
+  printf("Enter '1' to add a name.\n");
+  printf("Enter '2' to delete a name.\n");
+  printf("Enter '3' to view all names in the system.\n");
+  printf("Enter '0' to quit.\n");
+}
