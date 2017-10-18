@@ -68,6 +68,10 @@ bstNode* DeleteName(bstNode *node, char *name)
     {
       node -> left = DeleteName(node -> left, name);
     }
+  else if(strcmp(node -> name, name) > 0)
+    {
+      node -> right = DeleteName(node -> right, name);
+    }
   else
     {
       if(node -> right && node -> left)
@@ -183,8 +187,8 @@ int main()
 	  printf("Please enter name to add to system or enter another option.\n");
 	  //scanf("%[^\n]s", in);
 	  fgets(in, 200, stdin);
-	  InsertName(root, in);
-	  //%*c;
+	  InsertName(root,in);
+	  //%*c
 	}
       else if(option == 2)
 	{

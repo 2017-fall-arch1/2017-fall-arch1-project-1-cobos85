@@ -1,5 +1,5 @@
-#ifndef bst_included
-#define bst_included
+#ifndef pm_bst_included
+#define pm_bst_included
 
 
 /* a binary search tree node */
