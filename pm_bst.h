@@ -3,7 +3,7 @@
 
 
 /* a binary search tree node */
-typdef struct bstNode
+typedef struct bstNode
 {
   
   char *name;

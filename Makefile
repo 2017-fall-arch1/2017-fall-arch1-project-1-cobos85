@@ -1,7 +1,6 @@
 all: pm_bst
 
-
-CFLAGS = -g -03
+CFLAGS = -g -O3
 
 pm_bst: pm_bst.o
 	cc -o $@ $^
