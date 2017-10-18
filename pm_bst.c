@@ -122,7 +122,7 @@ void PrintInorder(bstNode *node)
   PrintInorder(node -> right);
 }
 
-FILE *fi;
+FILE *fi;                                  /* pointer for write file */
 /* to print tree in preorder */
 void PrintPreorder(bstNode *node)
 {
@@ -130,7 +130,7 @@ void PrintPreorder(bstNode *node)
     {
       return;
     }
-  fprintf(fi,"%s", node -> name);
+  fprintf(fi,"%s", node -> name);         /* to print tree into employees.txt file Preorder form */
   printf("%s", node -> name);
   PrintPreorder(node -> left);
   PrintPreorder(node -> right);
@@ -160,12 +160,12 @@ void menu()
 /* main method for use of bst, user input and read/write to file */
 int main()
 {
-  bstNode* root = NULL;
-  int option;
-  char nm[200];
-  char in[200];
-  FILE *f;
-  f = fopen("employees.txt","r");
+  bstNode* root = NULL;                  /* created empty tree */
+  int option;                            /* option for menu loop */
+  char nm[200];                          /* nm string variable for name input from file */
+  char in[200];                          /* in string variable for name input from user */
+  FILE *f;                               /* pointer for read file */
+  f = fopen("employees.txt","r");        /* opening file employees.txt to read and write */
   if(f == NULL)
     {
       printf("Couldn't open file. :(\n");
@@ -209,8 +209,8 @@ int main()
 	}
       scanf("%d", &option);
     }
-  fi = fopen("employees.txt", "w");
+  fi = fopen("employees.txt", "w");          /* opening file employees.txt to write to */
   PrintPreorder(root);
-  fclose(fi);
+  fclose(fi);                               /* closing file wmployees.txt */
   return 0;
 }
